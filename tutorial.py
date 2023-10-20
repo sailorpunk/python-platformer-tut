@@ -11,7 +11,7 @@ pygame.display.set_caption("Platformer")
 BG_COLOR = (255,255,255)
 WIDTH, HEIGHT = 1000, 800
 FPS = 60
-PLAYER_VEL = 5
+PLAYER_VEL = 10
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
 
     def move(self, dx, dy):
         self.rect.x += dx
-        self.rect.y =+ dy
+        self.rect.y += dy
 
     def move_left(self, vel):
         self.x_vel = -vel
@@ -37,22 +37,30 @@ class Player(pygame.sprite.Sprite):
             self.animation_count = 0
 
     def move_right(self, vel):
-        self.y_vel = vel
+        self.x_vel = vel
         if self.direction != "right":
             self.direction = "right"
             self.animation_count = 0
+
+    # player up and down
+
+  """  def move_up(self, vel):
+        self.y_vel = -vel
+        if self.direction != "up":
+            self.direction = "up"
+            self.animation_count = 0
+
+    def move_down(self, vel):
+        self.y_vel = vel
+        if self.direction != "down":
+            self.direction = "down"
+            self.animation_count = 0 """
 
     def loop(self, fps):
         self.move(self.x_vel, self.y_vel)
 
     def draw(self, win):
-        pygame.draw.rect(win, self.COLOR, self.rect)
-
-    def move_left(self, vel):
-        self.x_vel = -vel
-
-    def move_left(self, vel):
-        self.x_vel = -vel
+       pygame.draw.rect(win, self.COLOR, self.rect)
 
 
 
@@ -79,11 +87,18 @@ def draw(window, background, bg_image, player):
 def handle_move(player):
     keys = pygame.key.get_pressed()
 
-    player.xvel = 0
+    player.x_vel = 0
+    # player.y_vel = 0
+    
     if keys[pygame.K_LEFT]:
         player.move_left(PLAYER_VEL)
     if keys[pygame.K_RIGHT]:
         player.move_right(PLAYER_VEL)
+    
+    """if keys[pygame.K_UP]:
+        player.move_up(PLAYER_VEL)
+    if keys[pygame.K_DOWN]:
+        player.move_down(PLAYER_VEL)"""
 
 def main(window):
     clock = pygame.time.Clock()
