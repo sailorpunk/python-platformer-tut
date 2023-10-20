@@ -44,7 +44,7 @@ class Player(pygame.sprite.Sprite):
 
     # player up and down
 
-  """  def move_up(self, vel):
+    """  def move_up(self, vel):
         self.y_vel = -vel
         if self.direction != "up":
             self.direction = "up"
