@@ -122,5 +122,5 @@ def main(window):
         handle_move(player)
         draw(window, background, bg_image, player)
     
-if __name__ == "__main__":
-    main(window\
+'''if __name__ == "__main__":
+    main(window)'''
